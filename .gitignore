@@ -1,0 +1,22 @@
+# Node dependencies
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+dist/
+frontend/dist/
+target/
+backend/target/
+
+# Local uploads and storage
+uploads/
+backend/uploads/
+
+# IDE / System files
+.DS_Store
+*.log
+.env
+.env.local
+.idea/
+.vscode/
+*.iml
