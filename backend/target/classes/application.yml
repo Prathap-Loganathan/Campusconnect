@@ -1,0 +1,70 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# Custom Application Properties (Global)
+app:
+  jwt:
+    secret: CampusConnectSuperSecretKeyForJWTSigningMustBeLongEnough1234567890
+    expiration-ms: 86400000 # 24 hours
+  upload:
+    dir: uploads
+
+spring:
+  application:
+    name: campusconnect-backend
+
+  # MySQL Database Setup (Primary / Default)
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/campusconnect_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:111}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data-mysql.sql
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# H2 In-Memory Profile Configuration (Optional: Activate with --spring.profiles.active=h2)
+---
+spring:
+  config:
+    activate:
+      on-profile: h2
+  datasource:
+    url: jdbc:h2:mem:campusconnect;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
