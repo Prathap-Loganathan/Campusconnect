@@ -31,11 +31,11 @@ com\campusconnect\repository\ItemClaimRepository.class
 com\campusconnect\repository\CategoryRepository.class
 com\campusconnect\controller\ComplaintController.class
 com\campusconnect\dto\ClaimRequest.class
+com\campusconnect\config\WebConfig.class
 com\campusconnect\dto\UserDto$Builder.class
 com\campusconnect\entity\Category.class
 com\campusconnect\entity\User.class
 com\campusconnect\entity\User$Builder.class
-com\campusconnect\TestDbConn.class
 com\campusconnect\repository\NotificationRepository.class
 com\campusconnect\entity\ComplaintUpdate$Builder.class
 com\campusconnect\entity\LostFoundItem.class
