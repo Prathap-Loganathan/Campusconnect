@@ -62,3 +62,4 @@ com\campusconnect\entity\ComplaintUpdate.class
 com\campusconnect\dto\LostFoundRequest.class
 com\campusconnect\repository\UserRepository.class
 com\campusconnect\service\SlaSchedulerService.class
+com\campusconnect\TestTiDB.class

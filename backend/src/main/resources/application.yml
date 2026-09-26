@@ -17,8 +17,8 @@ spring:
 
   # MySQL Database Setup (Primary / Default)
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://b22kxmit5ycy1ilmwarx-mysql.services.clever-cloud.com:3306/b22kxmit5ycy1ilmwarx?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
-    username: ${SPRING_DATASOURCE_USERNAME:uirczhyk3lroym74}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://gateway01.ap-northeast-1.prod.aws.tidbcloud.com:4000/test?useSSL=true&trustServerCertificate=true&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:29yrqaJCag71Ecg.root}
     password: ${SPRING_DATASOURCE_PASSWORD:e17BeZ81O5Ymp1eusImf}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:

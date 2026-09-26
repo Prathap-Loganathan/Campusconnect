@@ -1,7 +1,7 @@
 FROM eclipse-temurin:21-jdk-alpine AS build
 WORKDIR /app
 COPY backend/ .
-ENV BUILD_VERSION=4.0.0
+ENV BUILD_VERSION=5.0.0
 RUN chmod +x mvnw && ./mvnw clean package -DskipTests
 
 FROM eclipse-temurin:21-jre-alpine
