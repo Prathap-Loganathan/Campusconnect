@@ -19,12 +19,12 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping(value = "/register", consumes = "application/json", produces = "application/json")
+    @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
         return ResponseEntity.ok(authService.register(request));
     }
 
-    @PostMapping(value = "/login", consumes = "application/json", produces = "application/json")
+    @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(authService.login(request));
     }
