@@ -17,9 +17,9 @@ spring:
 
   # MySQL Database Setup (Primary / Default)
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/campusconnect_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true}
-    username: ${SPRING_DATASOURCE_USERNAME:root}
-    password: ${SPRING_DATASOURCE_PASSWORD:111}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://b22kxmit5ycy1ilmwarx-mysql.services.clever-cloud.com:3306/b22kxmit5ycy1ilmwarx?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:uirczhyk3lroym74}
+    password: ${SPRING_DATASOURCE_PASSWORD:e17BeZ81O5Ymp1eusImf}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 3
