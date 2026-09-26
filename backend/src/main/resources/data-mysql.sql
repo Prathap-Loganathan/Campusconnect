@@ -1,5 +1,5 @@
--- Initial Complaint Categories
-INSERT INTO categories (id, name, description, default_sla_hours) VALUES 
+-- Initial Complaint Categories (INSERT IGNORE prevents duplicate PK errors on restart)
+INSERT IGNORE INTO categories (id, name, description, default_sla_hours) VALUES 
 (1, 'Electrical', 'Fan, light, socket, switchboard, AC issues', 24),
 (2, 'Plumbing', 'Water leakage, tap repair, flush, drainage issues', 12),
 (3, 'Wi-Fi & Network', 'Wi-Fi connectivity, LAN port, internet access problems', 12),
@@ -13,7 +13,7 @@ INSERT INTO categories (id, name, description, default_sla_hours) VALUES
 -- Demo Seed Users (Password for all demo users is: password123)
 -- BCrypt hash for 'password123': $2a$10$WhJcsbQwR3IeOKikbJjI4.NnI6YP.Qj1SgppB/Qfv3lJ4lZ9Rd5L2
 
-INSERT INTO users (id, name, email, password, role, identifier_id, hostel_or_block, room_number, phone, created_at) VALUES
+INSERT IGNORE INTO users (id, name, email, password, role, identifier_id, hostel_or_block, room_number, phone, created_at) VALUES
 (1, 'System Admin', 'admin@campusconnect.com', '$2a$10$WhJcsbQwR3IeOKikbJjI4.NnI6YP.Qj1SgppB/Qfv3lJ4lZ9Rd5L2', 'ROLE_ADMIN', 'ADM-001', 'Admin Block', '101', '9876543210', CURRENT_TIMESTAMP),
 (2, 'Hostel Warden John', 'warden@campusconnect.com', '$2a$10$WhJcsbQwR3IeOKikbJjI4.NnI6YP.Qj1SgppB/Qfv3lJ4lZ9Rd5L2', 'ROLE_WARDEN', 'WRD-102', 'Block A', '201', '9876543211', CURRENT_TIMESTAMP),
 (3, 'Electrician Sam (Staff)', 'staff.elec@campusconnect.com', '$2a$10$WhJcsbQwR3IeOKikbJjI4.NnI6YP.Qj1SgppB/Qfv3lJ4lZ9Rd5L2', 'ROLE_STAFF', 'STF-501', 'Maintenance Hub', '005', '9876543212', CURRENT_TIMESTAMP),
@@ -23,13 +23,13 @@ INSERT INTO users (id, name, email, password, role, identifier_id, hostel_or_blo
 (7, 'Student Bob Smith', 'bob@student.com', '$2a$10$WhJcsbQwR3IeOKikbJjI4.NnI6YP.Qj1SgppB/Qfv3lJ4lZ9Rd5L2', 'ROLE_STUDENT', 'STU-2024-002', 'Block B', '112', '9876543216', CURRENT_TIMESTAMP);
 
 -- Sample Complaints (MySQL DATE_ADD syntax)
-INSERT INTO complaints (id, complaint_number, title, description, category_id, priority, status, hostel_or_block, room_number, location_details, student_id, assigned_staff_id, sla_breached, sla_due_date, created_at, updated_at) VALUES
+INSERT IGNORE INTO complaints (id, complaint_number, title, description, category_id, priority, status, hostel_or_block, room_number, location_details, student_id, assigned_staff_id, sla_breached, sla_due_date, created_at, updated_at) VALUES
 (1, 'CMP-2026-0001', 'Ceiling Fan Not Working', 'The ceiling fan in room 304 stopped rotating yesterday night and makes a buzzing sound.', 1, 'HIGH', 'ASSIGNED', 'Block A', '304', 'Near balcony window', 6, 3, FALSE, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 1 DAY), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (2, 'CMP-2026-0002', 'Wi-Fi Connection Dropping', 'Wi-Fi signal drops frequently every 10 minutes in Block A 3rd floor corridor.', 3, 'MEDIUM', 'IN_PROGRESS', 'Block A', '304', '3rd Floor Corridor', 6, 5, FALSE, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 12 HOUR), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 (3, 'CMP-2026-0003', 'Bathroom Tap Leakage', 'Water is continuously dripping from the sink tap in room 112.', 2, 'LOW', 'SUBMITTED', 'Block B', '112', 'Attached Washroom', 7, NULL, FALSE, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 12 HOUR), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Sample Complaint Updates
-INSERT INTO complaint_updates (id, complaint_id, status, comment, updated_by_id, created_at) VALUES
+INSERT IGNORE INTO complaint_updates (id, complaint_id, status, comment, updated_by_id, created_at) VALUES
 (1, 1, 'SUBMITTED', 'Complaint lodged by student.', 6, CURRENT_TIMESTAMP),
 (2, 1, 'ASSIGNED', 'Assigned to Electrician Sam by Warden.', 2, CURRENT_TIMESTAMP),
 (3, 2, 'SUBMITTED', 'Wi-Fi issue logged.', 6, CURRENT_TIMESTAMP),
@@ -37,12 +37,12 @@ INSERT INTO complaint_updates (id, complaint_id, status, comment, updated_by_id,
 (5, 2, 'IN_PROGRESS', 'Replaced access point router on 3rd floor. Testing connectivity.', 5, CURRENT_TIMESTAMP);
 
 -- Sample Lost & Found Items
-INSERT INTO lost_found_items (id, title, description, category, item_type, location, item_date, image_url, reporter_id, status, created_at) VALUES
+INSERT IGNORE INTO lost_found_items (id, title, description, category, item_type, location, item_date, image_url, reporter_id, status, created_at) VALUES
 (1, 'Blue Water Bottle (Hydro Flask)', 'Dark blue stainless steel water bottle with stickers on it.', 'Personal Belongings', 'LOST', 'Central Library Reading Hall', '2026-09-20', NULL, 6, 'OPEN', CURRENT_TIMESTAMP),
 (2, 'Student ID Card - CS Dept', 'Found an ID card belonging to Computer Science department student.', 'Documents', 'FOUND', 'Campus Canteen Table 4', '2026-09-21', NULL, 7, 'OPEN', CURRENT_TIMESTAMP);
 
 -- Sample Notification
-INSERT INTO notifications (id, user_id, title, message, read_status, target_type, target_id, created_at) VALUES
+INSERT IGNORE INTO notifications (id, user_id, title, message, read_status, target_type, target_id, created_at) VALUES
 (1, 6, 'Complaint Assigned', 'Your complaint CMP-2026-0001 has been assigned to Electrician Sam.', FALSE, 'COMPLAINT', 1, CURRENT_TIMESTAMP),
 (2, 6, 'Status Update', 'Your complaint CMP-2026-0002 is now IN_PROGRESS.', FALSE, 'COMPLAINT', 2, CURRENT_TIMESTAMP);
 
