@@ -29,7 +29,7 @@ spring:
       connection-timeout: 30000
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: update
